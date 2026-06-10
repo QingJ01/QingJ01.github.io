@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>嗨，我是一只情酱</title>
+    <meta name="description" content="QingJ - 独立开发者 & AI 自媒体 | Full Stack Developer">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <div class="header-container">
+            <div class="nav-left">
+                <!-- 预留 Logo 位置或空白 -->
+            </div>
+            <nav class="navbar">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="https://blog.byebug.cn/" class="nav-link" target="_blank" rel="noopener noreferrer">Blog</a>
+            </nav>
+            <div class="nav-right">
+                <button id="theme-toggle" class="nav-link theme-btn" aria-label="切换主题">
+                    <i class="ri-moon-fill" id="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+        <div class="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg-pattern" aria-hidden="true"></div>
+        <div class="hero-content">
+            <div class="hero-avatar-container">
+                <img src="https://q1.qlogo.cn/g?b=qq&nk=2903609300&s=640" alt="一只情酱" class="hero-avatar">
+            </div>
+            <h1 class="hero-title">嗨，我是 <span class="highlight">一只情酱</span></h1>
+            <p class="hero-subtitle">全栈开发者 <span class="whisper">实则全沾工程师（小声）</span></p>
+            <p class="hero-tagline">我热爱编程，但它们似乎不太喜欢我……</p>
+        </div>
+        <div class="hero-reveal" aria-hidden="true">
+            <div class="hero-bg-pattern"></div>
+            <div class="hero-reveal-content">
+                <div class="hero-avatar-container">
+                    <img src="https://q1.qlogo.cn/g?b=qq&nk=2903609300&s=640" alt="" class="hero-avatar">
+                </div>
+                <h1 class="hero-title">Hi, I Am <span class="highlight">QingJ</span></h1>
+                <p class="hero-subtitle">Full Stack Developer <span class="whisper">(Jack of All Trades)</span></p>
+                <p class="hero-tagline">I love coding, but they don't seem to like me...</p>
+            </div>
+            <div class="hero-quote">
+                <p>"Not tempted by praise, nor frightened by blame"</p>
+            </div>
+        </div>
+        <div class="hero-quote">
+            <p>"不诱于誉，不恐于诽，率道而行，端然正己"</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">QingJ</p>
+
+            <div class="bento-grid">
+                <!-- 第一行：个人信息 + 统计数据 -->
+                <div class="bento-row top-row">
+                    <!-- 左侧：个人大卡片 -->
+                    <div class="bento-card profile-card">
+                        <div class="profile-header">
+                            <img src="https://q1.qlogo.cn/g?b=qq&nk=2903609300&s=640" alt="一只情酱" class="avatar-large">
+                            <div class="profile-text">
+                                <h3 class="username-large">@一只情酱</h3>
+                                <p class="bio-text">独立开发者 & AI 自媒体</p>
+                            </div>
+                        </div>
+                        <div class="profile-social">
+                            <a href="mailto:qingj1314@163.com" class="social-btn" title="Email"><i
+                                    class="ri-mail-fill"></i></a>
+                            <a href="https://github.com/QingJ01" target="_blank" rel="noopener noreferrer"
+                                class="social-btn" title="GitHub"><i class="ri-github-fill"></i></a>
+                            <a href="https://www.zhihu.com/people/QingJ" target="_blank" rel="noopener noreferrer"
+                                class="social-btn" title="知乎"><i class="ri-zhihu-fill"></i></a>
+                            <a href="https://blog.byebug.cn/" target="_blank" rel="noopener noreferrer"
+                                class="social-btn" title="Blog"><i class="ri-quill-pen-fill"></i></a>
+                        </div>
+                        <div class="profile-tags">
+                            <span class="tag"><i class="ri-code-s-slash-line"></i> Developer</span>
+                            <span class="tag"><i class="ri-open-source-fill"></i> Open Source</span>
+                            <span class="tag"><i class="ri-robot-2-fill"></i> AI Explorer</span>
+                        </div>
+                    </div>
+
+                    <!-- 右侧：统计与交互 -->
+                    <div class="right-column">
+                        <!-- 统计数据 -->
+                        <div class="stats-grid">
+                            <div class="bento-card stat-card">
+                                <span class="stat-value">2.2K+</span>
+                                <span class="stat-label">STARS</span>
+                            </div>
+                            <div class="bento-card stat-card">
+                                <span class="stat-value">2000+</span>
+                                <span class="stat-label">COMMITS</span>
+                            </div>
+                            <div class="bento-card stat-card">
+                                <span class="stat-value">90+</span>
+                                <span class="stat-label">FOLLOWERS</span>
+                            </div>
+                        </div>
+                        <!-- 交互卡片 -->
+                        <div class="interaction-grid">
+                            <div class="bento-card like-card" id="view-card">
+                                <i class="ri-eye-fill view-icon"></i>
+                                <span class="like-count">100W+</span>
+                                <span class="like-label">Article Reads</span>
+                            </div>
+                            <div class="bento-card badge-card">
+                                <span class="badge-emoji">🐟</span>
+                                <span class="badge-title">Slacker</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二行：特色卡片 -->
+                <div class="bento-row bottom-row">
+                    <div class="bento-card feature-card bug-collector">
+                        <h3>Bug Collector</h3>
+                        <p class="feature-subtitle">CREATING WEIRD ISSUES</p>
+                        <div class="terminal-block">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                            </div>
+                            <div class="terminal-body">
+                                <p class="quote-text" id="quote">"It works on my machine"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bento-card feature-card creating-stack">
+                        <h3>Creating</h3>
+                        <p class="feature-subtitle">SOMETHING COOL.</p>
+                        <div class="stack-icons">
+                            <i class="devicon-javascript-plain colored" title="JavaScript"></i>
+                            <i class="devicon-typescript-plain colored" title="TypeScript"></i>
+                            <i class="devicon-rust-original" title="Rust"></i>
+                            <i class="devicon-python-plain colored" title="Python"></i>
+                            <i class="devicon-php-plain colored" title="PHP"></i>
+                            <i class="devicon-vuejs-plain colored" title="Vue.js"></i>
+                            <i class="devicon-react-original colored" title="React"></i>
+                            <i class="devicon-dart-plain colored" title="Dart"></i>
+                            <i class="devicon-flutter-plain colored" title="Flutter"></i>
+                            <i class="devicon-nodejs-plain colored" title="Node.js"></i>
+                            <i class="devicon-docker-plain colored" title="Docker"></i>
+                            <i class="devicon-linux-plain" title="Linux"></i>
+                            <i class="devicon-mysql-plain colored" title="MySQL"></i>
+                            <i class="devicon-redis-plain colored" title="Redis"></i>
+                            <i class="devicon-postgresql-plain colored" title="PostgreSQL"></i>
+                            <i class="devicon-mongodb-plain colored" title="MongoDB"></i>
+                            <i class="devicon-nginx-original colored" title="Nginx"></i>
+                            <i class="devicon-tailwindcss-plain colored" title="Tailwind CSS"></i>
+                            <i class="devicon-git-plain colored" title="Git"></i>
+                            <i class="devicon-vscode-plain colored" title="VS Code"></i>
+                        </div>
+                    </div>
+                    <div class="bento-card feature-card code-poet">
+                        <h3>Code Poet</h3>
+                        <p class="feature-subtitle">TALK IS CHEAP. SHOW ME THE CODE</p>
+                        <div class="poet-lines">
+                            <p>"Code is poetry in motion"</p>
+                            <p>"Every bug tells a story"</p>
+                            <p>"Simplicity is the ultimate sophistication"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-quote quote-animate">
+                <p>"不诱于誉，不恐于诽，率道而行，端然正己"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline">
+        <div class="container">
+            <h2 class="section-title">Timeline</h2>
+            <p class="section-subtitle">一路走来</p>
+
+            <div class="timeline-track">
+                <div class="timeline-item scroll-reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2026</div>
+                    <div class="timeline-content">
+                        <h3>不止于代码</h3>
+                        <div class="timeline-months">
+                            <div class="timeline-month">
+                                <span class="month-label">4月</span>
+                                <p>用 Rust 写了一封情书——Pebble 邮件客户端；把踩过的坑整理成 Harness Engineering 系列</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">3月</span>
+                                <p>Clyde 桌宠上线，会盯着你写代码的那种，125+ Stars；顺手做了 AiMsgExport；开始在知乎写东西</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">2月</span>
+                                <p>Agent-Zhihu 拿下首届 A2A 全球黑客松奖项；同期交出 Axiom 和 Req-2-Rank</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">1月</span>
+                                <p>新年第一行代码给了 QListen 和 OneLook，一个听歌一个画脑图</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <h3>造轮子的一年</h3>
+                        <div class="timeline-months">
+                            <div class="timeline-month">
+                                <span class="month-label">12月</span>
+                                <p>年末三连发：Get-Microsoft-Rewards、CodeDiary、Bad-Mood-Crusher；博客被 XSS 了一刀，痛定思痛修好了</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">7月</span>
+                                <p>做了个搜索引擎叫 Sokudo，名字比速度快</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">3月</span>
+                                <p>终于有了自己的主页 QingJ01.github.io，在互联网上正式有了一张脸</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">1月</span>
+                                <p>byebug.cn 域名上线，和旧域名说了声再见；发布搜索引擎净化脚本</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <h3>推开开源的门</h3>
+                        <div class="timeline-months">
+                            <div class="timeline-month">
+                                <span class="month-label">12月</span>
+                                <p>写了几个小工具练手，又把油猴脚本的心得写成了一篇「开发指北」</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">11月</span>
+                                <p>123Pan Unlock——第一个真正意义上的开源作品，后来它替我收下了 1K+ Stars</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">8月</span>
+                                <p>给王者荣耀写了个战力查询 API，算是第一次把代码变成别人能用的东西</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h3>野蛮生长</h3>
+                        <div class="timeline-months">
+                            <div class="timeline-month">
+                                <span class="month-label">6月</span>
+                                <p>做了一款游戏工具 App，UV 5W+，第一次感受到「被需要」的感觉</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">4月</span>
+                                <p>开始系统性学习编程，可惜入门语言是 PHP（别笑）</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">1月</span>
+                                <p>ChatGPT 发布，第一次体验到 LLM，突然觉得编程的天花板又高了一截</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-content">
+                        <h3>落笔生根</h3>
+                        <div class="timeline-months">
+                            <div class="timeline-month">
+                                <span class="month-label">11月</span>
+                                <p>用 Typecho 搭了个博客，想着总该有个地方记录自己走过的路</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">8月</span>
+                                <p>开始写公众号，试着把想法讲给更多人听</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">5月</span>
+                                <p>开始接触逆向，掌握 GG 修改器，拆别人的代码比写自己的有意思多了</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item scroll-reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h3>故事开始的地方</h3>
+                        <p>写下第一行代码，屏幕亮起来的那一刻，好像什么都不一样了</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-quote quote-animate">
+                <p>一条时间线，装不下那些深夜的崩溃和天亮后的不甘</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">Where ideas come to life</p>
+
+            <div class="project-list">
+                <a href="https://github.com/QingJ01/Pebble" target="_blank" rel="noopener noreferrer"
+                    class="project-item scroll-reveal">
+                    <div class="project-info">
+                        <h3 class="project-name">Pebble</h3>
+                        <p class="project-desc">A small yet beautiful email client.</p>
+                    </div>
+                    <span class="project-arrow">→</span>
+                </a>
+                <a href="https://github.com/QingJ01/Clyde" target="_blank" rel="noopener noreferrer"
+                    class="project-item scroll-reveal">
+                    <div class="project-info">
+                        <h3 class="project-name">Clyde</h3>
+                        <p class="project-desc">A desktop pet that reacts to your AI coding agent sessions in real-time.
+                        </p>
+                    </div>
+
+                    <span class="project-arrow">→</span>
+                </a>
+                <a href="https://github.com/QingJ01/Agent-Zhihu" target="_blank" rel="noopener noreferrer"
+                    class="project-item scroll-reveal">
+                    <div class="project-info">
+                        <h3 class="project-name">Agent Zhihu</h3>
+                        <p class="project-desc">别读评论区了，让你的 Agent 去和专家吵一架。</p>
+                    </div>
+
+                    <span class="project-arrow">→</span>
+                </a>
+                <a href="https://github.com/QingJ01/Get-Microsoft-Rewards" target="_blank" rel="noopener noreferrer"
+                    class="project-item scroll-reveal">
+                    <div class="project-info">
+                        <h3 class="project-name">Get Microsoft Rewards</h3>
+                        <p class="project-desc">微软 Rewards 助手 - 自动完成搜索、活动、签到任务</p>
+                    </div>
+
+                    <span class="project-arrow">→</span>
+                </a>
+                <a href="https://github.com/QingJ01/onelook" target="_blank" rel="noopener noreferrer"
+                    class="project-item scroll-reveal">
+                    <div class="project-info">
+                        <h3 class="project-name">OneLook</h3>
+                        <p class="project-desc">一个极简高效的思维导图</p>
+                    </div>
+
+                    <span class="project-arrow">→</span>
+                </a>
+                <a href="https://github.com/QingJ01/Axiom" target="_blank" rel="noopener noreferrer"
+                    class="project-item scroll-reveal">
+                    <div class="project-info">
+                        <h3 class="project-name">Axiom</h3>
+                        <p class="project-desc">给 AI 编程助手装上工程化大脑</p>
+                    </div>
+
+                    <span class="project-arrow">→</span>
+                </a>
+            </div>
+
+            <a href="https://github.com/QingJ01" target="_blank" rel="noopener noreferrer" class="view-more">View more
+                on GitHub →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-social">
+            <a href="mailto:qingj1314@163.com" title="Email"><i class="ri-mail-fill"></i></a>
+            <a href="https://github.com/QingJ01" target="_blank" rel="noopener noreferrer" title="GitHub"><i
+                    class="ri-github-fill"></i></a>
+            <a href="https://www.zhihu.com/people/QingJ" target="_blank" rel="noopener noreferrer" title="知乎"><i
+                    class="ri-zhihu-fill"></i></a>
+            <a href="https://blog.byebug.cn/" target="_blank" rel="noopener noreferrer" title="Blog"><i
+                    class="ri-quill-pen-fill"></i></a>
+        </div>
+        <p>© <span id="currentYear"></span> 一只情酱. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
