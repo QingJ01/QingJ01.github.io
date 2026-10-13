@@ -1,311 +1,213 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // 设置当前年份
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
+/* Browser-local enhancements. The page remains readable without JavaScript. */
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const storage = {
+    get(key) { try { return localStorage.getItem(key); } catch { return null; } },
+    set(key, value) { try { localStorage.setItem(key, value); } catch { /* Theme still works in this tab. */ } }
+  };
+  const themeButton = document.getElementById('theme-toggle');
+  const themeLabel = document.getElementById('theme-label');
+  function setTheme(theme) {
+    const dark = theme === 'dark';
+    root.dataset.theme = dark ? 'dark' : 'light';
+    themeButton.setAttribute('aria-pressed', String(dark));
+    themeButton.setAttribute('aria-label', dark ? '切换到浅色主题' : '切换到深色主题');
+    themeLabel.textContent = dark ? '浅色' : '暗色';
+  }
+  setTheme(storage.get('theme') === 'dark' ? 'dark' : 'light');
+  themeButton.addEventListener('click', () => {
+    const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    setTheme(theme);
+    storage.set('theme', theme);
+  });
+  const year = new Date().getFullYear();
+  document.getElementById('currentYear').textContent = year;
+  document.getElementById('hero-year').textContent = year;
 
-    // 几何装饰元素
-    const geoShapes = ['geo-triangle', 'geo-square', 'geo-diamond', 'geo-circle', 'geo-cross', 'geo-ring', 'geo-dots'];
+  const menu = document.querySelector('.navbar');
+  const burger = document.querySelector('.burger');
+  function setMenu(open, returnFocus = false) {
+    menu.classList.toggle('active', open);
+    burger.classList.toggle('active', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? '关闭导航菜单' : '打开导航菜单');
+    if (returnFocus) burger.focus();
+  }
+  burger.addEventListener('click', () => setMenu(burger.getAttribute('aria-expanded') !== 'true'));
+  menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') setMenu(false, true);
+  });
+  document.addEventListener('click', event => {
+    if (!event.target.closest('.header') && burger.getAttribute('aria-expanded') === 'true') setMenu(false);
+  });
+  matchMedia('(min-width:761px)').addEventListener('change', event => { if (event.matches) setMenu(false); });
 
-    function createGeoElements(selector, count) {
-        const section = document.querySelector(selector);
-        if (!section) return;
-        const container = document.createElement('div');
-        container.className = 'geo-container';
-        for (let i = 0; i < count; i++) {
-            const shape = document.createElement('div');
-            const type = geoShapes[Math.floor(Math.random() * geoShapes.length)];
-            shape.className = 'geo ' + type;
-            const size = 10 + Math.random() * 22;
-            const dur = 15 + Math.random() * 20;
-            shape.style.setProperty('--size', size + 'px');
-            shape.style.setProperty('--dur', dur + 's');
-            shape.style.left = (5 + Math.random() * 90) + '%';
-            shape.style.top = (5 + Math.random() * 90) + '%';
-            shape.style.animationDelay = -(Math.random() * dur) + 's';
-            container.appendChild(shape);
+  const status = document.getElementById('copy-status');
+  let statusTimer;
+  function showStatus(message) {
+    clearTimeout(statusTimer);
+    status.textContent = message;
+    status.classList.add('visible');
+    statusTimer = setTimeout(() => status.classList.remove('visible'), 3500);
+  }
+  document.querySelectorAll('[data-copy]').forEach(button => {
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy);
+        showStatus(button.dataset.copy.includes('@') ? '邮箱已复制。期待你的消息。' : '微信号已复制。');
+      } catch {
+        showStatus('复制未完成，请直接选中页面上的邮箱或微信号。');
+      }
+    });
+  });
+
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const terminalGrid = document.querySelector('.terminal-grid');
+  let terminalInView = true;
+  function syncTerminalMotion() {
+    terminalGrid.style.setProperty('--terminal-play-state', terminalInView && !document.hidden && !reducedMotion.matches ? 'running' : 'paused');
+  }
+  if ('IntersectionObserver' in window) {
+    const terminalObserver = new IntersectionObserver(entries => {
+      terminalInView = entries[0].isIntersecting;
+      syncTerminalMotion();
+    });
+    terminalObserver.observe(terminalGrid);
+  }
+  document.addEventListener('visibilitychange', syncTerminalMotion);
+  reducedMotion.addEventListener('change', syncTerminalMotion);
+  const introParts = document.querySelectorAll('.hero-eyebrow,.hero-greeting,.hero-subtitle,.hero-tagline,.hero-actions,.hero-social,.visual-meta,.visual-footer,.hero-bottom');
+  introParts.forEach((element, index) => element.style.setProperty('--intro-delay', `${Math.min(index * 55, 330)}ms`));
+  if (!reducedMotion.matches) {
+    root.classList.add('intro-pending');
+    const portrait = document.getElementById('portrait-avatar');
+    const ready = Promise.allSettled([document.fonts.ready, portrait.decode()]);
+    Promise.race([ready, new Promise(resolve => setTimeout(resolve, 350))]).then(() => {
+      root.classList.remove('intro-pending');
+      if (!reducedMotion.matches) {
+        root.classList.add('motion-ready');
+      }
+    });
+  }
+  document.querySelectorAll('.section-heading,.contact-main,.contact-links').forEach(element => element.classList.add('scroll-reveal'));
+  document.querySelectorAll('.bento-grid,.project-list,.timeline-track').forEach(group => {
+    group.querySelectorAll(':scope > .scroll-reveal').forEach((element, index) => {
+      element.style.setProperty('--reveal-delay', `${Math.min(index * 65, 130)}ms`);
+    });
+  });
+  document.querySelectorAll('.voice-wave > i').forEach((bar, index) => {
+    bar.style.setProperty('--wave-delay', `${-index * 85}ms`);
+  });
+  let progressFrame = 0;
+  function updateProgress() {
+    progressFrame = 0;
+    if (reducedMotion.matches) return;
+    const distance = document.documentElement.scrollHeight - innerHeight;
+    root.style.setProperty('--read-progress', distance > 0 ? Math.min(1, Math.max(0, scrollY / distance)) : 0);
+  }
+  function queueProgress() {
+    if (!progressFrame && !reducedMotion.matches) progressFrame = requestAnimationFrame(updateProgress);
+  }
+  window.addEventListener('scroll', queueProgress, { passive: true });
+  window.addEventListener('resize', queueProgress, { passive: true });
+  queueProgress();
+  const pointerMotion = matchMedia('(min-width:761px) and (hover:hover) and (pointer:fine)');
+  const visual = document.querySelector('.hero-visual');
+  const stage = document.querySelector('.portrait-stage');
+  let pointerFrame = 0;
+  let pointerX = 0;
+  let pointerY = 0;
+  function resetPortrait() {
+    cancelAnimationFrame(pointerFrame);
+    pointerFrame = 0;
+    stage.style.removeProperty('--portrait-x');
+    stage.style.removeProperty('--portrait-y');
+  }
+  visual.addEventListener('pointermove', event => {
+    if (reducedMotion.matches || !pointerMotion.matches || event.pointerType !== 'mouse') return;
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    if (pointerFrame) return;
+    pointerFrame = requestAnimationFrame(() => {
+      pointerFrame = 0;
+      const bounds = visual.getBoundingClientRect();
+      const x = Math.max(-1, Math.min(1, (pointerX - bounds.left) / bounds.width * 2 - 1));
+      const y = Math.max(-1, Math.min(1, (pointerY - bounds.top) / bounds.height * 2 - 1));
+      stage.style.setProperty('--portrait-x', `${x * 4}px`);
+      stage.style.setProperty('--portrait-y', `${y * 4}px`);
+    });
+  }, { passive: true });
+  visual.addEventListener('pointerleave', resetPortrait);
+  pointerMotion.addEventListener('change', resetPortrait);
+  reducedMotion.addEventListener('change', event => {
+    resetPortrait();
+    if (event.matches) {
+      root.classList.remove('intro-pending', 'motion-ready');
+      cancelAnimationFrame(progressFrame);
+      progressFrame = 0;
+      root.style.removeProperty('--read-progress');
+    } else queueProgress();
+  });
+  const revealElements = document.querySelectorAll('.scroll-reveal');
+  if ('IntersectionObserver' in window && !reducedMotion.matches) {
+    const reveal = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          reveal.unobserve(entry.target);
         }
-        section.prepend(container);
-    }
-
-    createGeoElements('.timeline', 11);
-    createGeoElements('.projects', 9);
-    createGeoElements('.footer', 5);
-
-    // 生成背景文字图案
-    document.querySelectorAll('.hero-bg-pattern').forEach(pattern => {
-        const text = 'Q I N G J   ';
-        for (let i = 0; i < 15; i++) {
-            const row = document.createElement('div');
-            row.className = 'pattern-row';
-            row.textContent = text.repeat(8);
-            pattern.appendChild(row);
-        }
+      });
+    }, { threshold: 0.06 });
+    root.classList.add('js-enhanced');
+    revealElements.forEach(element => reveal.observe(element));
+    document.addEventListener('focusin', event => {
+      const element = event.target.closest('.scroll-reveal');
+      if (element) {
+        element.classList.add('visible');
+        reveal.unobserve(element);
+      }
     });
-
-    // 主题切换逻辑
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const html = document.documentElement;
-
-    const savedTheme = localStorage.getItem('theme');
-
-    if (savedTheme === 'light') {
-        html.setAttribute('data-theme', 'light');
-        themeIcon.className = 'ri-sun-fill';
-    } else {
-        html.removeAttribute('data-theme');
-        themeIcon.className = 'ri-moon-fill';
-    }
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        if (currentTheme === 'light') {
-            html.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'dark');
-            themeIcon.className = 'ri-moon-fill';
-        } else {
-            html.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            themeIcon.className = 'ri-sun-fill';
-        }
+    reducedMotion.addEventListener('change', event => {
+      if (event.matches) {
+        reveal.disconnect();
+        revealElements.forEach(element => element.classList.add('visible'));
+      }
     });
-
-    // iOS 风格滚动格言效果
-    const quoteObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            } else {
-                entry.target.classList.remove('visible');
-            }
+  } else {
+    root.classList.add('js-enhanced');
+    revealElements.forEach(element => element.classList.add('visible'));
+  }
+  if ('IntersectionObserver' in window) {
+    const navLinks = Array.from(menu.querySelectorAll('a[href^="#"]'));
+    const navObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(link => {
+          const active = link.getAttribute('href') === '#' + entry.target.id;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
         });
-    }, { root: null, rootMargin: '0px', threshold: 0.3 });
+      });
+    }, { rootMargin: '-15% 0px -65% 0px', threshold: 0 });
+    ['home', 'about', 'timeline', 'projects', 'contact'].forEach(id => navObserver.observe(document.getElementById(id)));
+  }
+  document.querySelectorAll('[data-js-only]').forEach(element => { element.hidden = false; });
 
-    document.querySelectorAll('.quote-animate').forEach(quote => {
-        quoteObserver.observe(quote);
-    });
-
-    // 导航菜单切换
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.navbar');
-
-    burger.addEventListener('click', function () {
-        nav.classList.toggle('active');
-        burger.classList.toggle('active');
-    });
-
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            nav.classList.remove('active');
-            burger.classList.remove('active');
-        });
-    });
-
-    // 滚动时导航栏效果
-    window.addEventListener('scroll', function () {
-        const header = document.querySelector('.header');
-        header.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // 程序员语录轮播
-    const quotes = [
-        '"It works on my machine"',
-        '"It was working yesterday"',
-        '"Must be a compiler bug"',
-        '"Code is poetry in motion"',
-        '"Every bug tells a story"',
-        '"Simplicity is the ultimate sophistication"',
-        '"There is no place like 127.0.0.1"',
-        '"99 bugs in the code, take one down..."',
-        '"Sleep is for the weak, coffee is for the strong"',
-        '"I don\'t always test my code, but when I do..."'
-    ];
-
-    const quoteElement = document.getElementById('quote');
-    let currentQuoteIndex = 0;
-
-    function rotateQuote() {
-        quoteElement.style.opacity = '0';
-        quoteElement.style.transform = 'translateY(10px) scale(0.98)';
-        quoteElement.style.filter = 'blur(2px)';
-
-        setTimeout(() => {
-            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
-            quoteElement.textContent = quotes[currentQuoteIndex];
-
-            quoteElement.style.opacity = '1';
-            quoteElement.style.transform = 'translateY(0) scale(1)';
-            quoteElement.style.filter = 'blur(0)';
-        }, 350);
-    }
-
-    if (quoteElement) {
-        quoteElement.style.transition = 'opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease';
-        setInterval(rotateQuote, 4000);
-    }
-
-    // Apple 风格滚动显示 — 更细腻的阈值
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    // 通用 scroll-reveal 元素
-    document.querySelectorAll('.scroll-reveal').forEach((el, i) => {
-        el.style.setProperty('--delay', `${i * 0.08}s`);
-        revealObserver.observe(el);
-    });
-
-    // Bento 卡片交错入场 + 3D 悬停
-    document.querySelectorAll('.bento-card').forEach((el, i) => {
-        el.classList.add('scroll-reveal');
-        el.style.setProperty('--delay', `${i * 0.1}s`);
-        revealObserver.observe(el);
-
-        el.addEventListener('transitionend', function handler(e) {
-            if (e.propertyName === 'opacity') {
-                el.classList.remove('scroll-reveal', 'visible');
-                el.removeEventListener('transitionend', handler);
-            }
-        });
-
-        // 3D tilt on hover
-        el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            el.style.transform = `translateY(-6px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
-        });
-
-        el.addEventListener('mouseleave', () => {
-            el.style.transform = '';
-            el.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease';
-        });
-
-        el.addEventListener('mouseenter', () => {
-            el.style.transition = 'transform 0.15s ease, box-shadow 0.4s ease, border-color 0.4s ease';
-        });
-    });
-
-    // Section 标题入场 — 独立延迟
-    document.querySelectorAll('.section-title').forEach(el => {
-        el.classList.add('scroll-reveal');
-        el.style.setProperty('--delay', '0s');
-        revealObserver.observe(el);
-    });
-
-    document.querySelectorAll('.section-subtitle').forEach(el => {
-        el.classList.add('scroll-reveal');
-        el.style.setProperty('--delay', '0.15s');
-        revealObserver.observe(el);
-    });
-
-    // Timeline 项逐个入场，间隔更大
-    document.querySelectorAll('.timeline-item').forEach((el, i) => {
-        el.classList.add('scroll-reveal');
-        el.style.setProperty('--delay', `${i * 0.15}s`);
-        revealObserver.observe(el);
-    });
-
-    // Project 项逐个入场
-    document.querySelectorAll('.project-item').forEach((el, i) => {
-        el.classList.add('scroll-reveal');
-        el.style.setProperty('--delay', `${i * 0.08}s`);
-        revealObserver.observe(el);
-    });
-
-    // Footer 入场
-    const footer = document.querySelector('.footer');
-    if (footer) {
-        const footerObs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
-        footerObs.observe(footer);
-    }
-
-    // Apple 风格视差滚动
-    let ticking = false;
-
-    function onParallaxScroll() {
-        const scrollY = window.scrollY;
-        const vh = window.innerHeight;
-
-        // Hero 内容轻微上移 + 渐隐
-        const heroContent = document.querySelector('.hero-content');
-        const revealContent = document.querySelector('.hero-reveal-content');
-        if (heroContent && scrollY < vh) {
-            const progress = scrollY / vh;
-            heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
-            heroContent.style.opacity = 1 - progress * 1.2;
-            if (revealContent) {
-                revealContent.style.transform = `translateY(${scrollY * 0.3}px)`;
-            }
-        }
-
-        // Hero 名言视差
-        const heroQuote = document.querySelector('.hero > .hero-quote');
-        const revealQuote = document.querySelector('.hero-reveal .hero-quote');
-        if (heroQuote && scrollY < vh) {
-            heroQuote.style.transform = `translateY(${scrollY * 0.15}px)`;
-            if (revealQuote) {
-                revealQuote.style.transform = `translateY(${scrollY * 0.15}px)`;
-            }
-        }
-
-        // 背景文字视差
-        document.querySelectorAll('.hero > .hero-bg-pattern').forEach(p => {
-            if (scrollY < vh) {
-                p.style.transform = `translateY(${scrollY * 0.1}px)`;
-            }
-        });
-
-        ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(onParallaxScroll);
-            ticking = true;
-        }
-    }, { passive: true });
-
-    // Hero 鼠标跟随圆形揭示
-    const heroSection = document.querySelector('.hero');
-    const revealLayer = document.querySelector('.hero-reveal');
-
-    if (heroSection && revealLayer) {
-        heroSection.addEventListener('mousemove', (e) => {
-            const rect = heroSection.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            revealLayer.style.transition = 'clip-path 0.08s ease-out';
-            revealLayer.style.clipPath = `circle(180px at ${x}px ${y}px)`;
-        });
-
-        heroSection.addEventListener('mouseleave', (e) => {
-            const rect = heroSection.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            revealLayer.style.transition = 'clip-path 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
-            revealLayer.style.clipPath = `circle(0px at ${x}px ${y}px)`;
-        });
-    }
-
-    // 平滑锚点滚动（覆盖默认行为，更丝滑）
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-});
+  const statsStatus = document.getElementById('stats-status');
+  statsStatus.textContent = '正在读取 GitHub 公开数据…';
+  const abort = new AbortController();
+  const timeout = setTimeout(() => abort.abort(), 6500);
+  fetch('https://api.github.com/users/QingJ01', { signal: abort.signal })
+    .then(response => { if (!response.ok) throw new Error('GitHub unavailable'); return response.json(); })
+    .then(data => {
+      if (!Number.isFinite(data.public_repos) || !Number.isFinite(data.followers)) throw new Error('Invalid profile data');
+      document.getElementById('repo-count').textContent = data.public_repos.toLocaleString('en-US');
+      document.getElementById('follower-count').textContent = data.followers.toLocaleString('en-US');
+      statsStatus.textContent = 'GitHub 实时公开数据';
+    })
+    .catch(() => { statsStatus.textContent = '数据暂不可用，可前往 GitHub 查看。'; })
+    .finally(() => clearTimeout(timeout));
+})();

@@ -1,214 +1,126 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>嗨，我是一只情酱</title>
-    <meta name="description" content="QingJ - 独立开发者 & AI 自媒体 | Full Stack Developer">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>QingJ · 大一 / AGI 探索者 / 创业者</title>
+<meta name="description" content="一只情酱 QingJ 的个人主页。大一、AGI 探索者、创业者，关注基座模型、个人 Agent 与 AI 产品的商业落地。">
+<meta property="og:title" content="QingJ · 探索 AGI，把想法做成产品">
+<meta property="og:description" content="个人 Agent、共享记忆、产品实践，以及一路走来的记录。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://byebug.cn/">
+<meta property="og:image" content="https://byebug.cn/assets/avatar.jpg">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preload" href="assets/fonts/doto.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
 </head>
-
 <body>
-    <!-- 导航栏 -->
-    <header class="header">
-        <div class="header-container">
-            <div class="nav-left">
-                <!-- 预留 Logo 位置或空白 -->
-            </div>
-            <nav class="navbar">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="https://blog.byebug.cn/" class="nav-link" target="_blank" rel="noopener noreferrer">Blog</a>
-            </nav>
-            <div class="nav-right">
-                <button id="theme-toggle" class="nav-link theme-btn" aria-label="切换主题">
-                    <i class="ri-moon-fill" id="theme-icon"></i>
-                </button>
-            </div>
-        </div>
-        <div class="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </header>
+<a class="skip-link" href="#main">跳到主要内容</a>
+<header class="header">
+<div class="header-container">
+<a class="brand" href="#home" aria-label="QingJ 首页"><svg class="brand-wordmark" viewBox="0 0 124 27" aria-hidden="true" focusable="false"><g fill="currentColor"><circle cx="5.6" cy="2.0" r="1.12"/><circle cx="9.2" cy="2.0" r="1.12"/><circle cx="12.8" cy="2.0" r="1.12"/><circle cx="2.0" cy="5.6" r="1.12"/><circle cx="16.4" cy="5.6" r="1.12"/><circle cx="2.0" cy="9.2" r="1.12"/><circle cx="16.4" cy="9.2" r="1.12"/><circle cx="2.0" cy="12.8" r="1.12"/><circle cx="16.4" cy="12.8" r="1.12"/><circle cx="2.0" cy="16.4" r="1.12"/><circle cx="9.2" cy="16.4" r="1.12"/><circle cx="16.4" cy="16.4" r="1.12"/><circle cx="2.0" cy="20.0" r="1.12"/><circle cx="12.8" cy="20.0" r="1.12"/><circle cx="5.6" cy="23.6" r="1.12"/><circle cx="9.2" cy="23.6" r="1.12"/><circle cx="16.4" cy="23.6" r="1.12"/><circle cx="27.2" cy="2.0" r="1.12"/><circle cx="30.8" cy="2.0" r="1.12"/><circle cx="34.4" cy="2.0" r="1.12"/><circle cx="30.8" cy="5.6" r="1.12"/><circle cx="30.8" cy="9.2" r="1.12"/><circle cx="30.8" cy="12.8" r="1.12"/><circle cx="30.8" cy="16.4" r="1.12"/><circle cx="30.8" cy="20.0" r="1.12"/><circle cx="27.2" cy="23.6" r="1.12"/><circle cx="30.8" cy="23.6" r="1.12"/><circle cx="34.4" cy="23.6" r="1.12"/><circle cx="45.2" cy="2.0" r="1.12"/><circle cx="59.6" cy="2.0" r="1.12"/><circle cx="45.2" cy="5.6" r="1.12"/><circle cx="48.8" cy="5.6" r="1.12"/><circle cx="59.6" cy="5.6" r="1.12"/><circle cx="45.2" cy="9.2" r="1.12"/><circle cx="48.8" cy="9.2" r="1.12"/><circle cx="59.6" cy="9.2" r="1.12"/><circle cx="45.2" cy="12.8" r="1.12"/><circle cx="52.4" cy="12.8" r="1.12"/><circle cx="59.6" cy="12.8" r="1.12"/><circle cx="45.2" cy="16.4" r="1.12"/><circle cx="56.0" cy="16.4" r="1.12"/><circle cx="59.6" cy="16.4" r="1.12"/><circle cx="45.2" cy="20.0" r="1.12"/><circle cx="56.0" cy="20.0" r="1.12"/><circle cx="59.6" cy="20.0" r="1.12"/><circle cx="45.2" cy="23.6" r="1.12"/><circle cx="59.6" cy="23.6" r="1.12"/><circle cx="74.0" cy="2.0" r="1.12"/><circle cx="77.6" cy="2.0" r="1.12"/><circle cx="81.2" cy="2.0" r="1.12"/><circle cx="70.4" cy="5.6" r="1.12"/><circle cx="84.8" cy="5.6" r="1.12"/><circle cx="70.4" cy="9.2" r="1.12"/><circle cx="70.4" cy="12.8" r="1.12"/><circle cx="77.6" cy="12.8" r="1.12"/><circle cx="81.2" cy="12.8" r="1.12"/><circle cx="84.8" cy="12.8" r="1.12"/><circle cx="70.4" cy="16.4" r="1.12"/><circle cx="84.8" cy="16.4" r="1.12"/><circle cx="70.4" cy="20.0" r="1.12"/><circle cx="84.8" cy="20.0" r="1.12"/><circle cx="74.0" cy="23.6" r="1.12"/><circle cx="77.6" cy="23.6" r="1.12"/><circle cx="81.2" cy="23.6" r="1.12"/><circle cx="102.8" cy="2.0" r="1.12"/><circle cx="106.4" cy="2.0" r="1.12"/><circle cx="110.0" cy="2.0" r="1.12"/><circle cx="110.0" cy="5.6" r="1.12"/><circle cx="110.0" cy="9.2" r="1.12"/><circle cx="110.0" cy="12.8" r="1.12"/><circle cx="95.6" cy="16.4" r="1.12"/><circle cx="110.0" cy="16.4" r="1.12"/><circle cx="95.6" cy="20.0" r="1.12"/><circle cx="110.0" cy="20.0" r="1.12"/><circle cx="99.2" cy="23.6" r="1.12"/><circle cx="102.8" cy="23.6" r="1.12"/><circle cx="106.4" cy="23.6" r="1.12"/></g><circle class="brand-signal" cx="121" cy="23.6" r="1.6"/></svg></a>
+<nav id="primary-nav" class="navbar" aria-label="主导航">
+<a href="#about" class="nav-link">关于我<span>01</span></a>
+<a href="#timeline" class="nav-link">轨迹<span>02</span></a>
+<a href="#projects" class="nav-link">作品<span>03</span></a>
+<a href="https://blog.byebug.cn/" target="_blank" rel="noopener noreferrer" class="nav-link">博客<span>↗</span></a>
+</nav>
+<div class="nav-right">
+<button id="theme-toggle" class="theme-btn" type="button" aria-label="切换到深色主题" aria-pressed="false" data-js-only hidden><span class="theme-indicator" aria-hidden="true"></span><span id="theme-label">暗色</span></button>
+<button class="burger" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="打开导航菜单" data-js-only hidden><span></span><span></span></button>
+</div>
+</div>
+</header>
+<main id="main">
+<section id="home" class="hero container" aria-labelledby="hero-title">
+<div class="hero-content">
+<p class="eyebrow hero-eyebrow"><span class="status-dot" aria-hidden="true"></span>EXPLORING AGI. BUILDING PRODUCTS.</p>
+<h1 id="hero-title" class="hero-title" aria-label="嗨，我是 QingJ"><span class="hero-greeting">嗨，我是</span><span class="dot-title"><span class="name-letter">Q</span><span class="name-letter">i</span><span class="name-letter">n</span><span class="name-letter">g</span><span class="name-letter">J</span><span class="title-dot name-terminal">.<svg class="terminal-grid" viewBox="0 0 3 3" aria-hidden="true" focusable="false"><rect class="terminal-pixel" x="1.05" y="0.05" width=".9" height=".9" style="--pixel-index:0"/><rect class="terminal-pixel" x=".05" y="1.05" width=".9" height=".9" style="--pixel-index:1"/><rect class="terminal-pixel" x="1.05" y="1.05" width=".9" height=".9" style="--pixel-index:2"/><rect class="terminal-pixel" x="2.05" y="1.05" width=".9" height=".9" style="--pixel-index:3"/><rect class="terminal-pixel" x="1.05" y="2.05" width=".9" height=".9" style="--pixel-index:4"/></svg></span></span></h1>
+<p class="hero-subtitle">大一<span>/</span>AGI 探索者<span>/</span>创业者</p>
+<p class="hero-tagline">在探索 AGI 的路上，<br>把想法做成真实可用的产品。</p>
+<div class="hero-actions"><a class="button button-solid" href="#projects">看看我的作品<span aria-hidden="true">↗</span></a><a class="text-link" href="#contact">聊聊你的想法<span aria-hidden="true">↗</span></a></div>
+<div class="hero-social"><a href="https://github.com/QingJ01" target="_blank" rel="noopener noreferrer" aria-label="QingJ01 的 GitHub">GitHub ↗</a><span aria-hidden="true">/</span><a href="https://x.com/qingj1314" target="_blank" rel="noopener noreferrer" aria-label="qingj1314 的 X">X ↗</a><span class="hero-note">一直在学习，也一直在做。</span></div>
+</div>
+<div class="hero-visual">
+<div class="visual-meta eyebrow"><span>PERSONAL PORTRAIT</span><span>(01)</span></div>
+<figure class="portrait-stage"><img id="portrait-avatar" class="portrait-art" src="assets/avatar-dots.svg" width="768" height="768" alt="QingJ 的蓝色点阵头像"></figure>
+<div class="visual-footer"><span class="eyebrow">QINGJ / 一只情酱</span><span class="eyebrow">IDEAS → SOMETHING REAL</span></div>
+</div>
+<div class="hero-bottom"><span class="eyebrow">QINGJ / 一只情酱</span><a href="#about" class="scroll-link">继续探索<span aria-hidden="true">↓</span></a><span class="eyebrow">PERSONAL SPACE · <span id="hero-year">2026</span></span></div>
+</section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg-pattern" aria-hidden="true"></div>
-        <div class="hero-content">
-            <div class="hero-avatar-container">
-                <img src="https://q1.qlogo.cn/g?b=qq&nk=2903609300&s=640" alt="一只情酱" class="hero-avatar">
-            </div>
-            <h1 class="hero-title">嗨，我是 <span class="highlight">一只情酱</span></h1>
-            <p class="hero-subtitle">全栈开发者 <span class="whisper">实则全沾工程师（小声）</span></p>
-            <p class="hero-tagline">我热爱编程，但它们似乎不太喜欢我……</p>
-        </div>
-        <div class="hero-reveal" aria-hidden="true">
-            <div class="hero-bg-pattern"></div>
-            <div class="hero-reveal-content">
-                <div class="hero-avatar-container">
-                    <img src="https://q1.qlogo.cn/g?b=qq&nk=2903609300&s=640" alt="" class="hero-avatar">
-                </div>
-                <h1 class="hero-title">Hi, I Am <span class="highlight">QingJ</span></h1>
-                <p class="hero-subtitle">Full Stack Developer <span class="whisper">(Jack of All Trades)</span></p>
-                <p class="hero-tagline">I love coding, but they don't seem to like me...</p>
-            </div>
-            <div class="hero-quote">
-                <p>"Not tempted by praise, nor frightened by blame"</p>
-            </div>
-        </div>
-        <div class="hero-quote">
-            <p>"不诱于誉，不恐于诽，率道而行，端然正己"</p>
-        </div>
-    </section>
+<section id="about" class="about section-block" aria-labelledby="about-title">
+<div class="container">
+<div class="section-heading"><div><p class="eyebrow">(01) / A LITTLE ABOUT ME</p><h2 id="about-title" class="section-title">有想法，也动手<span class="title-dot">.</span></h2></div><p class="section-subtitle">模型、产品，还有那些想做成的事。</p></div>
+<div class="bento-grid">
+<article class="bento-card profile-card scroll-reveal">
+<div class="card-meta eyebrow"><span>PROFILE / QINGJ</span><span>01—A</span></div>
+<div class="profile-header"><img src="assets/avatar.jpg" alt="一只情酱的头像" class="avatar-large" width="88" height="88"><div class="profile-text"><h3>@一只情酱</h3><p>Freshman / AGI explorer / Entrepreneur</p></div></div>
+<p class="bio-text">我是 QingJ，一个大一学生、AGI 探索者和创业者。我在做个人 Agent 与 AI 产品，也在思考模型的能力，怎样变成日常真正用得上的东西。</p>
+<div class="profile-bottom"><a href="mailto:qingj1314@163.com">qingj1314@163.com <span aria-hidden="true">↗</span></a><span class="eyebrow">BASED IN CHINA</span></div>
+</article>
+<article class="bento-card statement-card scroll-reveal">
+<div class="card-meta eyebrow"><span>THE APPROACH</span><span>01—B</span></div>
+<p class="statement">Learn.<br>Build.<br><span>Repeat.</span></p>
+<p>从理解模型，到做出产品。<br>缩短想法与实践之间的距离。</p>
+<span class="statement-index" aria-hidden="true">(∞)</span>
+</article>
+<article class="bento-card interests-card scroll-reveal">
+<div class="card-meta eyebrow"><span>IN MY ORBIT / 关注方向</span><span>01—C</span></div>
+<ul class="focus-list"><li><span class="focus-number">01</span><div><h3>Harness Engineering</h3><p>记忆、约束、验证与恢复，让 Agent 的工作更可靠。</p></div></li><li><span class="focus-number">02</span><div><h3>Multi-agent product design</h3><p>探索多 Agent 协作如何成为可用的产品体验。</p></div></li><li><span class="focus-number">03</span><div><h3>Foundation models</h3><p>理解基座模型的架构、训练与推理。</p></div></li><li><span class="focus-number">04</span><div><h3>Personal agents</h3><p>个人 Agent 的实践，以及从原型到商业产品的落地。</p></div></li></ul>
+</article>
+<article class="bento-card signal-card scroll-reveal">
+<div class="card-meta eyebrow"><span>ON GITHUB</span><a href="https://github.com/QingJ01" target="_blank" rel="noopener noreferrer" aria-label="查看 QingJ01 的 GitHub">↗</a></div>
+<div class="stats-grid" aria-live="polite"><div><span class="stat-value" id="repo-count">—</span><span class="stat-label">PUBLIC REPOS</span></div><div><span class="stat-value" id="follower-count">—</span><span class="stat-label">FOLLOWERS</span></div></div>
+<p id="stats-status" class="stats-status">打开 GitHub 查看公开动态。</p>
+<div class="signal-divider"></div>
+<p class="eyebrow">SINCE 2021</p><p class="signal-note">“不诱于誉，不恐于诽，<br>率道而行，端然正己。”</p>
+<div class="signal-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</article>
+</div>
+</div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+<section id="timeline" class="timeline section-block" aria-labelledby="timeline-title">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">QingJ</p>
-
-            <div class="bento-grid">
-                <!-- 第一行：个人信息 + 统计数据 -->
-                <div class="bento-row top-row">
-                    <!-- 左侧：个人大卡片 -->
-                    <div class="bento-card profile-card">
-                        <div class="profile-header">
-                            <img src="https://q1.qlogo.cn/g?b=qq&nk=2903609300&s=640" alt="一只情酱" class="avatar-large">
-                            <div class="profile-text">
-                                <h3 class="username-large">@一只情酱</h3>
-                                <p class="bio-text">独立开发者 & AI 自媒体</p>
-                            </div>
-                        </div>
-                        <div class="profile-social">
-                            <a href="mailto:qingj1314@163.com" class="social-btn" title="Email"><i
-                                    class="ri-mail-fill"></i></a>
-                            <a href="https://github.com/QingJ01" target="_blank" rel="noopener noreferrer"
-                                class="social-btn" title="GitHub"><i class="ri-github-fill"></i></a>
-                            <a href="https://www.zhihu.com/people/QingJ" target="_blank" rel="noopener noreferrer"
-                                class="social-btn" title="知乎"><i class="ri-zhihu-fill"></i></a>
-                            <a href="https://blog.byebug.cn/" target="_blank" rel="noopener noreferrer"
-                                class="social-btn" title="Blog"><i class="ri-quill-pen-fill"></i></a>
-                        </div>
-                        <div class="profile-tags">
-                            <span class="tag"><i class="ri-code-s-slash-line"></i> Developer</span>
-                            <span class="tag"><i class="ri-open-source-fill"></i> Open Source</span>
-                            <span class="tag"><i class="ri-robot-2-fill"></i> AI Explorer</span>
-                        </div>
-                    </div>
-
-                    <!-- 右侧：统计与交互 -->
-                    <div class="right-column">
-                        <!-- 统计数据 -->
-                        <div class="stats-grid">
-                            <div class="bento-card stat-card">
-                                <span class="stat-value">2.2K+</span>
-                                <span class="stat-label">STARS</span>
-                            </div>
-                            <div class="bento-card stat-card">
-                                <span class="stat-value">2000+</span>
-                                <span class="stat-label">COMMITS</span>
-                            </div>
-                            <div class="bento-card stat-card">
-                                <span class="stat-value">90+</span>
-                                <span class="stat-label">FOLLOWERS</span>
-                            </div>
-                        </div>
-                        <!-- 交互卡片 -->
-                        <div class="interaction-grid">
-                            <div class="bento-card like-card" id="view-card">
-                                <i class="ri-eye-fill view-icon"></i>
-                                <span class="like-count">100W+</span>
-                                <span class="like-label">Article Reads</span>
-                            </div>
-                            <div class="bento-card badge-card">
-                                <span class="badge-emoji">🐟</span>
-                                <span class="badge-title">Slacker</span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">(02) / THE JOURNEY</p>
+                    <h2 id="timeline-title" class="section-title">一路走来<span class="title-dot">.</span></h2>
                 </div>
-
-                <!-- 第二行：特色卡片 -->
-                <div class="bento-row bottom-row">
-                    <div class="bento-card feature-card bug-collector">
-                        <h3>Bug Collector</h3>
-                        <p class="feature-subtitle">CREATING WEIRD ISSUES</p>
-                        <div class="terminal-block">
-                            <div class="terminal-header">
-                                <span class="terminal-dot red"></span>
-                                <span class="terminal-dot yellow"></span>
-                                <span class="terminal-dot green"></span>
-                            </div>
-                            <div class="terminal-body">
-                                <p class="quote-text" id="quote">"It works on my machine"</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bento-card feature-card creating-stack">
-                        <h3>Creating</h3>
-                        <p class="feature-subtitle">SOMETHING COOL.</p>
-                        <div class="stack-icons">
-                            <i class="devicon-javascript-plain colored" title="JavaScript"></i>
-                            <i class="devicon-typescript-plain colored" title="TypeScript"></i>
-                            <i class="devicon-rust-original" title="Rust"></i>
-                            <i class="devicon-python-plain colored" title="Python"></i>
-                            <i class="devicon-php-plain colored" title="PHP"></i>
-                            <i class="devicon-vuejs-plain colored" title="Vue.js"></i>
-                            <i class="devicon-react-original colored" title="React"></i>
-                            <i class="devicon-dart-plain colored" title="Dart"></i>
-                            <i class="devicon-flutter-plain colored" title="Flutter"></i>
-                            <i class="devicon-nodejs-plain colored" title="Node.js"></i>
-                            <i class="devicon-docker-plain colored" title="Docker"></i>
-                            <i class="devicon-linux-plain" title="Linux"></i>
-                            <i class="devicon-mysql-plain colored" title="MySQL"></i>
-                            <i class="devicon-redis-plain colored" title="Redis"></i>
-                            <i class="devicon-postgresql-plain colored" title="PostgreSQL"></i>
-                            <i class="devicon-mongodb-plain colored" title="MongoDB"></i>
-                            <i class="devicon-nginx-original colored" title="Nginx"></i>
-                            <i class="devicon-tailwindcss-plain colored" title="Tailwind CSS"></i>
-                            <i class="devicon-git-plain colored" title="Git"></i>
-                            <i class="devicon-vscode-plain colored" title="VS Code"></i>
-                        </div>
-                    </div>
-                    <div class="bento-card feature-card code-poet">
-                        <h3>Code Poet</h3>
-                        <p class="feature-subtitle">TALK IS CHEAP. SHOW ME THE CODE</p>
-                        <div class="poet-lines">
-                            <p>"Code is poetry in motion"</p>
-                            <p>"Every bug tells a story"</p>
-                            <p>"Simplicity is the ultimate sophistication"</p>
-                        </div>
-                    </div>
-                </div>
+                <p class="section-subtitle">从第一行代码，到下一次尝试。</p>
             </div>
-            <div class="about-quote quote-animate">
-                <p>"不诱于誉，不恐于诽，率道而行，端然正己"</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="timeline">
-        <div class="container">
-            <h2 class="section-title">Timeline</h2>
-            <p class="section-subtitle">一路走来</p>
 
             <div class="timeline-track">
                 <div class="timeline-item scroll-reveal">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">2026</div>
                     <div class="timeline-content">
-                        <h3>不止于代码</h3>
+                        <h3>从探索到商业落地</h3>
                         <div class="timeline-months">
+                            <div class="timeline-month">
+                                <span class="month-label">9月</span>
+                                <p>初创公司拿下新东方 60 万元 B 端订单。</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">8月</span>
+                                <p>受邀成为新知 Playground 嘉宾。</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">7月</span>
+                                <p>受邀成为知乎 TechClub 嘉宾；获知乎日报报道；获得 AdventureX26 二等奖。</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">6月</span>
+                                <p>担任 MiniMax DevMeetup 上海站分享嘉宾。</p>
+                            </div>
+                            <div class="timeline-month">
+                                <span class="month-label">5月</span>
+                                <p>获知乎科技创作者卓越新锐奖。</p>
+                            </div>
                             <div class="timeline-month">
                                 <span class="month-label">4月</span>
                                 <p>用 Rust 写了一封情书——Pebble 邮件客户端；把踩过的坑整理成 Harness Engineering 系列</p>
@@ -331,89 +243,48 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <p class="section-subtitle">Where ideas come to life</p>
+<section id="projects" class="projects section-block" aria-labelledby="projects-title">
+<div class="container"><div class="section-heading"><div><p class="eyebrow">(03) / SELECTED WORK</p><h2 id="projects-title" class="section-title">把想法做出来<span class="title-dot">.</span></h2></div><a class="text-link" href="https://github.com/QingJ01" target="_blank" rel="noopener noreferrer">更多 GitHub 项目<span aria-hidden="true">↗</span></a></div>
+<div class="project-list">
+<a href="https://github.com/QingJ01/Pebble" target="_blank" rel="noopener noreferrer" class="project-item project-pebble scroll-reveal" aria-label="Pebble：一个本地优先的桌面邮件客户端。统一收件箱、全文搜索与规则自动化，让邮件回到简单、顺手的状态。">
+<div class="project-top"><span class="eyebrow">(01) / LOCAL-FIRST EMAIL</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+<div class="project-art" aria-hidden="true"><div class="mail-illustration"><span class="mail-line"></span><div class="mail-envelope"><span></span><span></span></div><span class="mail-seal dot-word">P.</span></div></div>
+<div class="project-info"><h3 class="project-name">Pebble</h3><p class="project-desc">一个本地优先的桌面邮件客户端。统一收件箱、全文搜索与规则自动化，让邮件回到简单、顺手的状态。</p></div>
+</a>
+<a href="https://github.com/QingJ01/Rememly" target="_blank" rel="noopener noreferrer" class="project-item project-rememly scroll-reveal" aria-label="Rememly（私有项目）：AI 工具之间的共享记忆层。通过 MCP 连接个人、项目与团队上下文，让记忆随着你在不同工具之间流动。">
+<div class="project-top"><span class="eyebrow">(02) / SHARED AI MEMORY</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+<div class="project-art" aria-hidden="true"><div class="memory-illustration"><span class="memory-endpoint">Claude</span><span class="memory-line"></span><span class="memory-core dot-word">R</span><span class="memory-line"></span><span class="memory-endpoint">Codex</span><span class="memory-caption">ONE MEMORY. EVERY TOOL.</span></div></div>
+<div class="project-info"><h3 class="project-name">Rememly<span class="private-label">PRIVATE</span></h3><p class="project-desc">AI 工具之间的共享记忆层。通过 MCP 连接个人、项目与团队上下文，让记忆随着你在不同工具之间流动。</p></div>
+</a>
+<a href="https://github.com/QingJ01/ZhiGeng" target="_blank" rel="noopener noreferrer" class="project-item project-zhigeng scroll-reveal" aria-label="ZhiGeng（私有项目）：从一个想法到第一批用户。用候补名单、更新日志、公开路线图和反馈，连接独立开发者与他们的用户。">
+<div class="project-top"><span class="eyebrow">(03) / FOR INDIE DEVELOPERS</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+<div class="project-art" aria-hidden="true"><div class="journey-illustration"><span><i></i>Idea</span><b>→</b><span><i></i>Build</span><b>→</b><span><i></i>Launch</span></div></div>
+<div class="project-info"><h3 class="project-name">ZhiGeng<span class="private-label">PRIVATE</span></h3><p class="project-desc">从一个想法到第一批用户。用候补名单、更新日志、公开路线图和反馈，连接独立开发者与他们的用户。</p></div>
+</a>
+<a href="https://github.com/ProjectMocha/Mocha" target="_blank" rel="noopener noreferrer" class="project-item project-mocha scroll-reveal" aria-label="Mocha（私有项目）：面向英语学习者的 AI 口语练习应用。分级学习、场景任务与实时对话，让开口练习成为日常。">
+<div class="project-top"><span class="eyebrow">(04) / AI SPEAKING PRACTICE</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+<div class="project-art" aria-hidden="true"><div class="speech-illustration"><span class="speech-label">Hello, world.</span><div class="voice-wave"><i style="--bar-height:14%"></i><i style="--bar-height:28%"></i><i style="--bar-height:46%"></i><i style="--bar-height:68%"></i><i style="--bar-height:36%"></i><i style="--bar-height:84%"></i><i style="--bar-height:54%"></i><i style="--bar-height:96%"></i><i style="--bar-height:64%"></i><i style="--bar-height:42%"></i><i style="--bar-height:72%"></i><i style="--bar-height:32%"></i><i style="--bar-height:52%"></i><i style="--bar-height:24%"></i><i style="--bar-height:12%"></i></div></div></div>
+<div class="project-info"><h3 class="project-name">Mocha<span class="private-label">PRIVATE</span></h3><p class="project-desc">面向英语学习者的 AI 口语练习应用。分级学习、场景任务与实时对话，让开口练习成为日常。</p></div>
+</a>
+</div></div>
+</section>
 
-            <div class="project-list">
-                <a href="https://github.com/QingJ01/Pebble" target="_blank" rel="noopener noreferrer"
-                    class="project-item scroll-reveal">
-                    <div class="project-info">
-                        <h3 class="project-name">Pebble</h3>
-                        <p class="project-desc">A small yet beautiful email client.</p>
-                    </div>
-                    <span class="project-arrow">→</span>
-                </a>
-                <a href="https://github.com/QingJ01/Clyde" target="_blank" rel="noopener noreferrer"
-                    class="project-item scroll-reveal">
-                    <div class="project-info">
-                        <h3 class="project-name">Clyde</h3>
-                        <p class="project-desc">A desktop pet that reacts to your AI coding agent sessions in real-time.
-                        </p>
-                    </div>
-
-                    <span class="project-arrow">→</span>
-                </a>
-                <a href="https://github.com/QingJ01/Agent-Zhihu" target="_blank" rel="noopener noreferrer"
-                    class="project-item scroll-reveal">
-                    <div class="project-info">
-                        <h3 class="project-name">Agent Zhihu</h3>
-                        <p class="project-desc">别读评论区了，让你的 Agent 去和专家吵一架。</p>
-                    </div>
-
-                    <span class="project-arrow">→</span>
-                </a>
-                <a href="https://github.com/QingJ01/Get-Microsoft-Rewards" target="_blank" rel="noopener noreferrer"
-                    class="project-item scroll-reveal">
-                    <div class="project-info">
-                        <h3 class="project-name">Get Microsoft Rewards</h3>
-                        <p class="project-desc">微软 Rewards 助手 - 自动完成搜索、活动、签到任务</p>
-                    </div>
-
-                    <span class="project-arrow">→</span>
-                </a>
-                <a href="https://github.com/QingJ01/onelook" target="_blank" rel="noopener noreferrer"
-                    class="project-item scroll-reveal">
-                    <div class="project-info">
-                        <h3 class="project-name">OneLook</h3>
-                        <p class="project-desc">一个极简高效的思维导图</p>
-                    </div>
-
-                    <span class="project-arrow">→</span>
-                </a>
-                <a href="https://github.com/QingJ01/Axiom" target="_blank" rel="noopener noreferrer"
-                    class="project-item scroll-reveal">
-                    <div class="project-info">
-                        <h3 class="project-name">Axiom</h3>
-                        <p class="project-desc">给 AI 编程助手装上工程化大脑</p>
-                    </div>
-
-                    <span class="project-arrow">→</span>
-                </a>
-            </div>
-
-            <a href="https://github.com/QingJ01" target="_blank" rel="noopener noreferrer" class="view-more">View more
-                on GitHub →</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-social">
-            <a href="mailto:qingj1314@163.com" title="Email"><i class="ri-mail-fill"></i></a>
-            <a href="https://github.com/QingJ01" target="_blank" rel="noopener noreferrer" title="GitHub"><i
-                    class="ri-github-fill"></i></a>
-            <a href="https://www.zhihu.com/people/QingJ" target="_blank" rel="noopener noreferrer" title="知乎"><i
-                    class="ri-zhihu-fill"></i></a>
-            <a href="https://blog.byebug.cn/" target="_blank" rel="noopener noreferrer" title="Blog"><i
-                    class="ri-quill-pen-fill"></i></a>
-        </div>
-        <p>© <span id="currentYear"></span> 一只情酱. All rights reserved.</p>
-    </footer>
-
-    <script src="js/main.js"></script>
+<section id="contact" class="contact section-block" aria-labelledby="contact-title">
+<div class="container"><div class="section-heading"><div><p class="eyebrow">(04) / STAY IN THE LOOP</p><h2 id="contact-title" class="section-title">保持连接<span class="title-dot">.</span></h2></div><p class="section-subtitle">聊产品，聊 AI，也聊一个还没做成的想法。</p></div>
+<div class="contact-grid">
+<div class="contact-main"><p class="eyebrow">SAY HELLO</p><a class="contact-email" href="mailto:qingj1314@163.com">qingj1314<br><span>@163.com</span><span class="contact-arrow" aria-hidden="true">↗</span></a><button class="copy-button" type="button" data-copy="qingj1314@163.com" data-js-only hidden>复制邮箱<span aria-hidden="true">＋</span></button></div>
+<div class="contact-links">
+<a href="https://x.com/qingj1314" target="_blank" rel="noopener noreferrer"><span>X / Twitter</span><span>@qingj1314 ↗</span></a>
+<a href="https://space.bilibili.com/666722302" target="_blank" rel="noopener noreferrer"><span>Bilibili</span><span>666722302 ↗</span></a>
+<a href="https://www.zhihu.com/people/QingJ" target="_blank" rel="noopener noreferrer"><span>知乎</span><span>QingJ ↗</span></a>
+<a href="https://blog.byebug.cn/" target="_blank" rel="noopener noreferrer"><span>Blog</span><span>byebug.cn ↗</span></a>
+<div class="contact-static"><span>公众号</span><strong>数字生命情酱</strong></div>
+<div class="contact-static"><span>WeChat</span><span>SQya8888 <button type="button" class="inline-copy" data-copy="SQya8888" aria-label="复制微信号 SQya8888" data-js-only hidden>复制</button></span></div>
+</div>
+</div></div>
+</section>
+</main>
+<footer class="footer container"><a class="brand" href="#home" aria-label="QingJ 回到首页"><svg class="brand-wordmark" viewBox="0 0 124 27" aria-hidden="true" focusable="false"><g fill="currentColor"><circle cx="5.6" cy="2.0" r="1.12"/><circle cx="9.2" cy="2.0" r="1.12"/><circle cx="12.8" cy="2.0" r="1.12"/><circle cx="2.0" cy="5.6" r="1.12"/><circle cx="16.4" cy="5.6" r="1.12"/><circle cx="2.0" cy="9.2" r="1.12"/><circle cx="16.4" cy="9.2" r="1.12"/><circle cx="2.0" cy="12.8" r="1.12"/><circle cx="16.4" cy="12.8" r="1.12"/><circle cx="2.0" cy="16.4" r="1.12"/><circle cx="9.2" cy="16.4" r="1.12"/><circle cx="16.4" cy="16.4" r="1.12"/><circle cx="2.0" cy="20.0" r="1.12"/><circle cx="12.8" cy="20.0" r="1.12"/><circle cx="5.6" cy="23.6" r="1.12"/><circle cx="9.2" cy="23.6" r="1.12"/><circle cx="16.4" cy="23.6" r="1.12"/><circle cx="27.2" cy="2.0" r="1.12"/><circle cx="30.8" cy="2.0" r="1.12"/><circle cx="34.4" cy="2.0" r="1.12"/><circle cx="30.8" cy="5.6" r="1.12"/><circle cx="30.8" cy="9.2" r="1.12"/><circle cx="30.8" cy="12.8" r="1.12"/><circle cx="30.8" cy="16.4" r="1.12"/><circle cx="30.8" cy="20.0" r="1.12"/><circle cx="27.2" cy="23.6" r="1.12"/><circle cx="30.8" cy="23.6" r="1.12"/><circle cx="34.4" cy="23.6" r="1.12"/><circle cx="45.2" cy="2.0" r="1.12"/><circle cx="59.6" cy="2.0" r="1.12"/><circle cx="45.2" cy="5.6" r="1.12"/><circle cx="48.8" cy="5.6" r="1.12"/><circle cx="59.6" cy="5.6" r="1.12"/><circle cx="45.2" cy="9.2" r="1.12"/><circle cx="48.8" cy="9.2" r="1.12"/><circle cx="59.6" cy="9.2" r="1.12"/><circle cx="45.2" cy="12.8" r="1.12"/><circle cx="52.4" cy="12.8" r="1.12"/><circle cx="59.6" cy="12.8" r="1.12"/><circle cx="45.2" cy="16.4" r="1.12"/><circle cx="56.0" cy="16.4" r="1.12"/><circle cx="59.6" cy="16.4" r="1.12"/><circle cx="45.2" cy="20.0" r="1.12"/><circle cx="56.0" cy="20.0" r="1.12"/><circle cx="59.6" cy="20.0" r="1.12"/><circle cx="45.2" cy="23.6" r="1.12"/><circle cx="59.6" cy="23.6" r="1.12"/><circle cx="74.0" cy="2.0" r="1.12"/><circle cx="77.6" cy="2.0" r="1.12"/><circle cx="81.2" cy="2.0" r="1.12"/><circle cx="70.4" cy="5.6" r="1.12"/><circle cx="84.8" cy="5.6" r="1.12"/><circle cx="70.4" cy="9.2" r="1.12"/><circle cx="70.4" cy="12.8" r="1.12"/><circle cx="77.6" cy="12.8" r="1.12"/><circle cx="81.2" cy="12.8" r="1.12"/><circle cx="84.8" cy="12.8" r="1.12"/><circle cx="70.4" cy="16.4" r="1.12"/><circle cx="84.8" cy="16.4" r="1.12"/><circle cx="70.4" cy="20.0" r="1.12"/><circle cx="84.8" cy="20.0" r="1.12"/><circle cx="74.0" cy="23.6" r="1.12"/><circle cx="77.6" cy="23.6" r="1.12"/><circle cx="81.2" cy="23.6" r="1.12"/><circle cx="102.8" cy="2.0" r="1.12"/><circle cx="106.4" cy="2.0" r="1.12"/><circle cx="110.0" cy="2.0" r="1.12"/><circle cx="110.0" cy="5.6" r="1.12"/><circle cx="110.0" cy="9.2" r="1.12"/><circle cx="110.0" cy="12.8" r="1.12"/><circle cx="95.6" cy="16.4" r="1.12"/><circle cx="110.0" cy="16.4" r="1.12"/><circle cx="95.6" cy="20.0" r="1.12"/><circle cx="110.0" cy="20.0" r="1.12"/><circle cx="99.2" cy="23.6" r="1.12"/><circle cx="102.8" cy="23.6" r="1.12"/><circle cx="106.4" cy="23.6" r="1.12"/></g><circle class="brand-signal" cx="121" cy="23.6" r="1.6"/></svg></a><p>© <span id="currentYear">2026</span> 一只情酱</p><a href="#home" class="back-to-top">回到顶部 ↑</a></footer>
+<div id="copy-status" class="copy-status" role="status" aria-live="polite"></div>
 </body>
-
 </html>
